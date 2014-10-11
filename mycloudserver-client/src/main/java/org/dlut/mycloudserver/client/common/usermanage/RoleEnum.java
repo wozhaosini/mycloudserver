@@ -5,7 +5,7 @@
  * use it only in accordance with the terms of the license agreement you entered
  * into with etao.com .
  */
-package org.dlut.mycloudserver.common;
+package org.dlut.mycloudserver.client.common.usermanage;
 
 /**
  * 角色枚举类
