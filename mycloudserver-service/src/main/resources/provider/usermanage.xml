@@ -23,7 +23,7 @@
 	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
 			<props>
-				<prop key="/httpService">httpService</prop>
+				<prop key="/userManageService">httpService</prop>
 			</props>
 		</property>
 	</bean>
