@@ -7,20 +7,24 @@
  */
 package org.dlut.mycloudserver.client.common;
 
+import java.io.Serializable;
+
 /**
  * 类UCloudResult.java的实现描述：TODO 类实现描述
  * 
  * @author luojie 2014年9月22日 下午11:49:05
  */
-public class MyCloudResult<T> {
+public class MyCloudResult<T> implements Serializable {
 
-    protected boolean success;
+    private static final long serialVersionUID = -3404886040638951329L;
 
-    protected T       model;
+    protected boolean         success;
 
-    protected String  msgCode;
+    protected T               model;
 
-    protected String  msgInfo;
+    protected String          msgCode;
+
+    protected String          msgInfo;
 
     public MyCloudResult() {
 
