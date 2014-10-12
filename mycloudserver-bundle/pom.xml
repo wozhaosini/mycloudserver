@@ -3,22 +3,20 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
-
-	<groupId>org.dlut.mycloud</groupId>
-	<artifactId>mycloudserver-client</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>mycloudserver-client</name>
+	<parent>
+		<groupId>org.dlut.mycloud</groupId>
+		<artifactId>mycloudserver</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>mycloudserver-bundle</artifactId>
+	<packaging>war</packaging>
+	<name>mycloudserver-bundle Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
 	<dependencies>
 
-		<!-- StringUtils -->
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.3.2</version>
+			<groupId>org.dlut.mycloud</groupId>
+			<artifactId>mycloudserver-service</artifactId>
 		</dependency>
 
 		<dependency>
@@ -28,4 +26,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	<build>
+		<finalName>mycloudserver-bundle</finalName>
+	</build>
 </project>

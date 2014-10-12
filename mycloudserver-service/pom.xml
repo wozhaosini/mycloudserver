@@ -15,6 +15,22 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
+
+		<dependency>
+			<groupId>org.dlut.mycloud</groupId>
+			<artifactId>mycloudserver-client</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.dlut.mycloud</groupId>
+			<artifactId>mycloudserver-dal</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.dlut.mycloud</groupId>
+			<artifactId>mycloudserver-common</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

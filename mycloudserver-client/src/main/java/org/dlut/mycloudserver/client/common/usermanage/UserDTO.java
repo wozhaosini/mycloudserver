@@ -7,15 +7,31 @@
  */
 package org.dlut.mycloudserver.client.common.usermanage;
 
+import org.dlut.mycloudserver.client.common.BaseDTO;
+
 /**
  * 类UserDTO.java的实现描述：TODO 类实现描述
  * 
  * @author luojie 2014年9月22日 下午10:49:25
  */
-public class UserDTO {
-    private String   userName;
-    private String   account;
-    private RoleEnum role;
+public class UserDTO extends BaseDTO {
+
+    private static final long serialVersionUID = -8136326022743105997L;
+
+    /**
+     * 用户名
+     */
+    private String            userName;
+
+    /**
+     * 账号
+     */
+    private String            account;
+
+    /**
+     * 角色
+     */
+    private RoleEnum          role;
 
     public String getUserName() {
         return userName;
