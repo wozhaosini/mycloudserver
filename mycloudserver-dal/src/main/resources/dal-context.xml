@@ -21,7 +21,7 @@
 
 	<bean id="mycloudServerSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="mycloudServerDataSource" />
-		<property name="typeAliasesPackage" value="org.dlut.mycloud.mycloudserver.dal.dataobject" />
+		<property name="typeAliasesPackage" value="org.dlut.mycloudserver.dal.dataobject" />
 	</bean>
 
 	<import resource="dal-mapper.xml" />

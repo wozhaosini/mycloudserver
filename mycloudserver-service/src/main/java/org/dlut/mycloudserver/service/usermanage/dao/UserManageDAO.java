@@ -10,8 +10,8 @@ package org.dlut.mycloudserver.service.usermanage.dao;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
-import org.dlut.mycloud.mycloudserver.dal.dataobject.UserDO;
-import org.dlut.mycloud.mycloudserver.dal.mapper.UserManageMapper;
+import org.dlut.mycloudserver.dal.dataobject.UserDO;
+import org.dlut.mycloudserver.dal.mapper.UserManageMapper;
 import org.springframework.stereotype.Service;
 
 /**

@@ -7,9 +7,9 @@
  */
 package org.dlut.mycloudserver.service.usermanage.convent;
 
-import org.dlut.mycloud.mycloudserver.dal.dataobject.UserDO;
 import org.dlut.mycloudserver.client.common.usermanage.RoleEnum;
 import org.dlut.mycloudserver.client.common.usermanage.UserDTO;
+import org.dlut.mycloudserver.dal.dataobject.UserDO;
 
 /**
  * 类UserConvent.java的实现描述：TODO 类实现描述

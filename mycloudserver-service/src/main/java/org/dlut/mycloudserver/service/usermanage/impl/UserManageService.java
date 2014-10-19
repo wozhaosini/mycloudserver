@@ -9,11 +9,11 @@ package org.dlut.mycloudserver.service.usermanage.impl;
 
 import javax.annotation.Resource;
 
-import org.dlut.mycloud.mycloudserver.dal.dataobject.UserDO;
 import org.dlut.mycloudserver.client.common.MyCloudResult;
 import org.dlut.mycloudserver.client.common.usermanage.RoleEnum;
 import org.dlut.mycloudserver.client.common.usermanage.UserDTO;
 import org.dlut.mycloudserver.client.service.usermanage.IUserManageService;
+import org.dlut.mycloudserver.dal.dataobject.UserDO;
 import org.dlut.mycloudserver.service.usermanage.convent.UserConvent;
 import org.dlut.mycloudserver.service.usermanage.dao.UserManageDAO;
 import org.slf4j.Logger;

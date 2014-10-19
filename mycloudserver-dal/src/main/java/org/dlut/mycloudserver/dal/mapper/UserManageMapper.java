@@ -5,10 +5,10 @@
  * use it only in accordance with the terms of the license agreement you entered
  * into with etao.com .
  */
-package org.dlut.mycloud.mycloudserver.dal.mapper;
+package org.dlut.mycloudserver.dal.mapper;
 
 import org.apache.ibatis.annotations.Param;
-import org.dlut.mycloud.mycloudserver.dal.dataobject.UserDO;
+import org.dlut.mycloudserver.dal.dataobject.UserDO;
 
 /**
  * 类UserManageMapper.java的实现描述：TODO 类实现描述
