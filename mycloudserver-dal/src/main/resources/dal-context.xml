@@ -11,10 +11,18 @@
            http://www.springframework.org/schema/mvc     
            http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-	<context:component-scan base-package="org.dlut.mycloudserver" />
 
-	<import resource="dal-context.xml" />
-	<import resource="provider/*.xml" />
+	<bean id="mycloudServerDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="${db_url}" />
+		<property name="username" value="${db_username}" />
+		<property name="password" value="${db_password}" />
+	</bean>
 
+	<bean id="mycloudServerSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="mycloudServerDataSource" />
+		<property name="typeAliasesPackage" value="org.dlut.mycloud.mycloudserver.dal.dataobject" />
+	</bean>
 
+	<import resource="dal-mapper.xml" />
 </beans>

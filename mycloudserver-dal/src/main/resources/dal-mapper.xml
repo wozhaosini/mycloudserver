@@ -11,10 +11,13 @@
            http://www.springframework.org/schema/mvc     
            http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-	<context:component-scan base-package="org.dlut.mycloudserver" />
-
-	<import resource="dal-context.xml" />
-	<import resource="provider/*.xml" />
-
+	<bean id="mycloudServerBaseMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"
+		abstract="true">
+		<property name="sqlSessionFactory" ref="mycloudServerSqlSessionFactory" />
+	</bean>
+	
+	<bean id="userManageMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="mycloudServerBaseMapper">
+		<property name="mapperInterface" value="org.dlut.mycloud.mycloudserver.dal.mapper.UserManageMapper" />
+	</bean>
 
 </beans>

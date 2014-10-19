@@ -7,10 +7,17 @@
  */
 package org.dlut.mycloudserver.service.usermanage.impl;
 
+import javax.annotation.Resource;
+
+import org.dlut.mycloud.mycloudserver.dal.dataobject.UserDO;
 import org.dlut.mycloudserver.client.common.MyCloudResult;
 import org.dlut.mycloudserver.client.common.usermanage.RoleEnum;
 import org.dlut.mycloudserver.client.common.usermanage.UserDTO;
 import org.dlut.mycloudserver.client.service.usermanage.IUserManageService;
+import org.dlut.mycloudserver.service.usermanage.convent.UserConvent;
+import org.dlut.mycloudserver.service.usermanage.dao.UserManageDAO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,22 +28,42 @@ import org.springframework.stereotype.Service;
 @Service("userManageService")
 public class UserManageService implements IUserManageService {
 
+    private static Logger log = LoggerFactory.getLogger(UserManageService.class);
+
+    @Resource(name = "userManageDAO")
+    private UserManageDAO userManageDAO;
+
     @Override
     public MyCloudResult<UserDTO> getUserByAccount(String account) {
-        UserDTO userDTO = new UserDTO();
-        userDTO.setAccount("31317030");
-        userDTO.setUserName("罗劼");
-        userDTO.setRole(RoleEnum.STUDENT);
+        UserDO userDO = userManageDAO.getUserByAccount(account);
+        UserDTO userDTO = UserConvent.conventToUserDTO(userDO);
         return MyCloudResult.successResult(userDTO);
     }
 
     @Override
     public MyCloudResult<UserDTO> verifyAndGetUser(String account, String password, RoleEnum roleEnum) {
-        UserDTO userDTO = new UserDTO();
-        userDTO.setAccount("31317030");
-        userDTO.setUserName("罗劼");
-        userDTO.setRole(RoleEnum.STUDENT);
+        if (account == null || password == null || roleEnum == null) {
+            return MyCloudResult.successResult(null);
+        }
+
+        UserDO userDO = userManageDAO.getUserByAccount(account);
+        if (userDO == null) {
+            // 账号不存在
+            log.info("用户账号" + account + " 不存在");
+            return MyCloudResult.successResult(null);
+        }
+        if (!userDO.getPassword().equals(password)) {
+            // 密码错误
+            log.info("账号" + account + "的密码错误");
+            return MyCloudResult.successResult(null);
+        }
+        if (userDO.getRole() != roleEnum.getStatus()) {
+            // 用户不属于此角色
+            log.info("账号" + account + "不属于角色" + roleEnum.getDesc());
+            return MyCloudResult.successResult(null);
+        }
+
+        UserDTO userDTO = UserConvent.conventToUserDTO(userDO);
         return MyCloudResult.successResult(userDTO);
     }
-
 }
