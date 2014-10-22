@@ -80,4 +80,10 @@ public class UserManageService implements IUserManageService {
         // TODO
         return null;
     }
+
+    @Override
+    public MyCloudResult<Integer> countQuery(QueryUserCondition queryUserCondition) {
+        int totalCount = userManageDAO.countQuery(queryUserCondition);
+        return MyCloudResult.successResult(totalCount);
+    }
 }

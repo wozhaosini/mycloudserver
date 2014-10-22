@@ -43,6 +43,14 @@ public interface IUserManageService {
     MyCloudResult<Boolean> createUser(String account, String password, RoleEnum roleEnum);
 
     /**
+     * 统计用户数量
+     * 
+     * @param queryUserCondition
+     * @return
+     */
+    MyCloudResult<Integer> countQuery(QueryUserCondition queryUserCondition);
+
+    /**
      * 分页查询用户
      * 
      * @param queryUserCondition

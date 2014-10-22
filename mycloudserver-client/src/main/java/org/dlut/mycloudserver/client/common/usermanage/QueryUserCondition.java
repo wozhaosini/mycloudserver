@@ -20,19 +20,13 @@ public class QueryUserCondition implements Serializable {
 
     private String            account;
 
-    private String            userName;
+    private String            username;
 
     private RoleEnum          role;
 
-    /**
-     * 分页码
-     */
-    private int               pageNO;
+    private int               offset           = 0;
 
-    /**
-     * 每页数量
-     */
-    private int               pageSize;
+    private int               limit            = 10;
 
     public String getAccount() {
         return account;
@@ -43,11 +37,11 @@ public class QueryUserCondition implements Serializable {
     }
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.username = userName;
     }
 
     public RoleEnum getRole() {
@@ -58,20 +52,20 @@ public class QueryUserCondition implements Serializable {
         this.role = role;
     }
 
-    public int getPageNO() {
-        return pageNO;
+    public int getOffset() {
+        return offset;
     }
 
-    public void setPageNO(int pageNO) {
-        this.pageNO = pageNO;
+    public void setOffset(int offset) {
+        this.offset = offset;
     }
 
-    public int getPageSize() {
-        return pageSize;
+    public int getLimit() {
+        return limit;
     }
 
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
+    public void setLimit(int limit) {
+        this.limit = limit;
     }
 
 }

@@ -14,10 +14,31 @@
 		account, username, password, role, gmt_create, gmt_modified
 	</sql>
 
+	<sql id="page-limit">
+		LIMIT #{offset}, #{limit}
+	</sql>
+
 	<select id="getUserByAccount" resultMap="RM-UserDO">
 		SELECT
 		<include refid="select-param-column" />
 		FROM mycloud_user where account = #{account}
+	</select>
+
+	<select id="countQuery" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		mycloud_user
+		<where>
+			<if test="account!=null">
+				account=#{account}
+			</if>
+			<if test="username!=null">
+				AND username=#{username}
+			</if>
+			<if test="role!=null">
+				AND role=#{role.status}
+			</if>
+		</where>
 	</select>
 
 </mapper>

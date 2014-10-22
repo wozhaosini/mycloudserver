@@ -10,6 +10,7 @@ package org.dlut.mycloudserver.service.usermanage.dao;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
+import org.dlut.mycloudserver.client.common.usermanage.QueryUserCondition;
 import org.dlut.mycloudserver.dal.dataobject.UserDO;
 import org.dlut.mycloudserver.dal.mapper.UserManageMapper;
 import org.springframework.stereotype.Service;
@@ -32,5 +33,12 @@ public class UserManageDAO {
         }
 
         return userManageMapper.getUserByAccount(account);
+    }
+
+    public int countQuery(QueryUserCondition queryUserCondition) {
+        if (queryUserCondition == null) {
+            return 0;
+        }
+        return userManageMapper.countQuery(queryUserCondition);
     }
 }

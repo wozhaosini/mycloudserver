@@ -8,6 +8,8 @@
 package org.dlut.mycloudserver.dal.mapper;
 
 import org.apache.ibatis.annotations.Param;
+import org.dlut.mycloudserver.client.common.usermanage.QueryUserCondition;
+import org.dlut.mycloudserver.client.common.usermanage.RoleEnum;
 import org.dlut.mycloudserver.dal.dataobject.UserDO;
 
 /**
@@ -17,5 +19,29 @@ import org.dlut.mycloudserver.dal.dataobject.UserDO;
  */
 public interface UserManageMapper {
 
+    /**
+     * 根据账号获取用户
+     * 
+     * @param account
+     * @return
+     */
     UserDO getUserByAccount(@Param("account") String account);
+
+    /**
+     * 创建用户
+     * 
+     * @param account
+     * @param password
+     * @param role
+     * @return
+     */
+    int createUser(String account, String password, RoleEnum role);
+
+    /**
+     * 统计员工数量
+     * 
+     * @param queryUserCondition
+     * @return
+     */
+    int countQuery(QueryUserCondition queryUserCondition);
 }
