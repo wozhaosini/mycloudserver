@@ -17,7 +17,7 @@
 	<select id="getUserByAccount" resultMap="RM-UserDO">
 		SELECT
 		<include refid="select-param-column" />
-		FROM ucloud_user where account = #{account}
+		FROM mycloud_user where account = #{account}
 	</select>
 
 </mapper>

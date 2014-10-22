@@ -8,6 +8,8 @@
 package org.dlut.mycloudserver.client.service.usermanage;
 
 import org.dlut.mycloudserver.client.common.MyCloudResult;
+import org.dlut.mycloudserver.client.common.Pagination;
+import org.dlut.mycloudserver.client.common.usermanage.QueryUserCondition;
 import org.dlut.mycloudserver.client.common.usermanage.RoleEnum;
 import org.dlut.mycloudserver.client.common.usermanage.UserDTO;
 
@@ -29,4 +31,23 @@ public interface IUserManageService {
      * @return 如果合法，则返回userDTO，否则返回null
      */
     MyCloudResult<UserDTO> verifyAndGetUser(String account, String password, RoleEnum roleEnum);
+
+    /**
+     * 创建新用户，如果账号存在，则返回false
+     * 
+     * @param account
+     * @param password
+     * @param roleEnum
+     * @return
+     */
+    MyCloudResult<Boolean> createUser(String account, String password, RoleEnum roleEnum);
+
+    /**
+     * 分页查询用户
+     * 
+     * @param queryUserCondition
+     * @return
+     */
+    MyCloudResult<Pagination<UserDTO>> query(QueryUserCondition queryUserCondition);
+
 }

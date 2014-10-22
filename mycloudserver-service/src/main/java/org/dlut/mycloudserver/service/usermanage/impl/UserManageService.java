@@ -10,6 +10,8 @@ package org.dlut.mycloudserver.service.usermanage.impl;
 import javax.annotation.Resource;
 
 import org.dlut.mycloudserver.client.common.MyCloudResult;
+import org.dlut.mycloudserver.client.common.Pagination;
+import org.dlut.mycloudserver.client.common.usermanage.QueryUserCondition;
 import org.dlut.mycloudserver.client.common.usermanage.RoleEnum;
 import org.dlut.mycloudserver.client.common.usermanage.UserDTO;
 import org.dlut.mycloudserver.client.service.usermanage.IUserManageService;
@@ -65,5 +67,17 @@ public class UserManageService implements IUserManageService {
 
         UserDTO userDTO = UserConvent.conventToUserDTO(userDO);
         return MyCloudResult.successResult(userDTO);
+    }
+
+    @Override
+    public MyCloudResult<Boolean> createUser(String account, String password, RoleEnum roleEnum) {
+        // TODO
+        return null;
+    }
+
+    @Override
+    public MyCloudResult<Pagination<UserDTO>> query(QueryUserCondition queryUserCondition) {
+        // TODO
+        return null;
     }
 }
