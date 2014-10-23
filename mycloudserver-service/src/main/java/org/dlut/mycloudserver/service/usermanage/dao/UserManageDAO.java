@@ -7,6 +7,9 @@
  */
 package org.dlut.mycloudserver.service.usermanage.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
@@ -40,5 +43,23 @@ public class UserManageDAO {
             return 0;
         }
         return userManageMapper.countQuery(queryUserCondition);
+    }
+
+    public List<UserDO> query(QueryUserCondition queryUserCondition) {
+        if (queryUserCondition == null) {
+            return new ArrayList<UserDO>();
+        }
+        return userManageMapper.query(queryUserCondition);
+    }
+
+    public boolean createUser(UserDO userDO) {
+        if (userDO == null) {
+            return false;
+        }
+        int res = userManageMapper.createUser(userDO);
+        if (res == 1) {
+            return true;
+        }
+        return false;
     }
 }

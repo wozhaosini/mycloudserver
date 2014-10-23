@@ -12,7 +12,10 @@ import static org.junit.Assert.fail;
 import javax.annotation.Resource;
 
 import org.dlut.mycloudserver.client.common.MyCloudResult;
+import org.dlut.mycloudserver.client.common.Pagination;
 import org.dlut.mycloudserver.client.common.usermanage.QueryUserCondition;
+import org.dlut.mycloudserver.client.common.usermanage.RoleEnum;
+import org.dlut.mycloudserver.client.common.usermanage.UserCreateReqDTO;
 import org.dlut.mycloudserver.client.common.usermanage.UserDTO;
 import org.dlut.mycloudserver.client.service.usermanage.IUserManageService;
 import org.dlut.mycloudserver.service.BaseTestCase;
@@ -56,7 +59,23 @@ public class UserManageServiceTest extends BaseTestCase {
      */
     @Test
     public void testCreateUser() {
-        fail("Not yet implemented");
+        //        for (int i = 3; i < 30; i++) {
+        //            UserCreateReqDTO userCreateReqDTO = new UserCreateReqDTO();
+        //            userCreateReqDTO.setAccount(i + "");
+        //            userCreateReqDTO.setPassword("110");
+        //            userCreateReqDTO.setRole(RoleEnum.STUDENT);
+        //            userCreateReqDTO.setUserName("罗劼");
+        //            MyCloudResult<Boolean> result = userManageService.createUser(userCreateReqDTO);
+        //            printObject(result.getModel());
+        //        }
+
+        UserCreateReqDTO userCreateReqDTO = new UserCreateReqDTO();
+        userCreateReqDTO.setAccount("a");
+        userCreateReqDTO.setPassword("110");
+        userCreateReqDTO.setRole(RoleEnum.STUDENT);
+        userCreateReqDTO.setUserName("罗劼");
+        MyCloudResult<Boolean> result = userManageService.createUser(userCreateReqDTO);
+        printObject(result.getModel());
     }
 
     /**
@@ -66,7 +85,16 @@ public class UserManageServiceTest extends BaseTestCase {
      */
     @Test
     public void testQuery() {
-        fail("Not yet implemented");
+        int page = 1;
+        int pageSize = 10;
+        QueryUserCondition condition = new QueryUserCondition();
+        int offset = (page - 1) * pageSize;
+        int limit = pageSize;
+        condition.setOffset(offset);
+        condition.setLimit(limit);
+        condition.setRole(RoleEnum.ADMIN);
+        MyCloudResult<Pagination<UserDTO>> result = userManageService.query(condition);
+        printObject(result.getModel());
     }
 
     /**

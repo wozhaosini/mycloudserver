@@ -40,5 +40,28 @@
 			</if>
 		</where>
 	</select>
+	
+	<select id="query" resultMap="RM-UserDO">
+		SELECT
+		<include refid="select-param-column" />
+		FROM mycloud_user
+		<where>
+			<if test="account!=null">
+				account=#{account}
+			</if>
+			<if test="username!=null">
+				AND username=#{username}
+			</if>
+			<if test="role!=null">
+				AND role=#{role.status}
+			</if>
+		</where>
+		<include refid="page-limit" />
+	</select>
+
+	<insert id="createUser">
+		INSERT INTO mycloud_user(account, password, username, role, gmt_create, gmt_modified)
+		VALUES(#{account}, #{password}, #{username}, #{role}, now(), now())
+	</insert>
 
 </mapper>

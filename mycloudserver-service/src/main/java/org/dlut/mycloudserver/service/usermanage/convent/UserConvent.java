@@ -7,7 +7,11 @@
  */
 package org.dlut.mycloudserver.service.usermanage.convent;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.dlut.mycloudserver.client.common.usermanage.RoleEnum;
+import org.dlut.mycloudserver.client.common.usermanage.UserCreateReqDTO;
 import org.dlut.mycloudserver.client.common.usermanage.UserDTO;
 import org.dlut.mycloudserver.dal.dataobject.UserDO;
 
@@ -29,5 +33,30 @@ public class UserConvent {
         userDTO.setRole(RoleEnum.getRoleByStatus(userDO.getRole()));
 
         return userDTO;
+    }
+
+    public static List<UserDTO> conventToUserDTOList(List<UserDO> userDOList) {
+        List<UserDTO> userDTOList = new ArrayList<UserDTO>();
+        if (userDOList == null) {
+            return userDTOList;
+        }
+
+        for (UserDO userDO : userDOList) {
+            userDTOList.add(conventToUserDTO(userDO));
+        }
+        return userDTOList;
+    }
+
+    public static UserDO conventToUserDO(UserCreateReqDTO userCreateReqDTO) {
+        if (userCreateReqDTO == null) {
+            return null;
+        }
+
+        UserDO userDO = new UserDO();
+        userDO.setAccount(userCreateReqDTO.getAccount());
+        userDO.setPassword(userCreateReqDTO.getPassword());
+        userDO.setRole(userCreateReqDTO.getRole().getStatus());
+        userDO.setUsername(userCreateReqDTO.getUserName());
+        return userDO;
     }
 }

@@ -11,6 +11,7 @@ import org.dlut.mycloudserver.client.common.MyCloudResult;
 import org.dlut.mycloudserver.client.common.Pagination;
 import org.dlut.mycloudserver.client.common.usermanage.QueryUserCondition;
 import org.dlut.mycloudserver.client.common.usermanage.RoleEnum;
+import org.dlut.mycloudserver.client.common.usermanage.UserCreateReqDTO;
 import org.dlut.mycloudserver.client.common.usermanage.UserDTO;
 
 /**
@@ -40,7 +41,7 @@ public interface IUserManageService {
      * @param roleEnum
      * @return
      */
-    MyCloudResult<Boolean> createUser(String account, String password, RoleEnum roleEnum);
+    MyCloudResult<Boolean> createUser(UserCreateReqDTO userCreateReqDTO);
 
     /**
      * 统计用户数量

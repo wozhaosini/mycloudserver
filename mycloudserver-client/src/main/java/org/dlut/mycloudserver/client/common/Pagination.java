@@ -10,6 +10,8 @@ package org.dlut.mycloudserver.client.common;
 import java.io.Serializable;
 import java.util.List;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 /**
  * 分页工具类
  * 
@@ -95,6 +97,11 @@ public class Pagination<T> implements Serializable {
 
     public void setList(List<T> list) {
         this.list = list;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
     }
 
 }

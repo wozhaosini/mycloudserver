@@ -57,7 +57,9 @@ public class QueryUserCondition implements Serializable {
     }
 
     public void setOffset(int offset) {
-        this.offset = offset;
+        if (offset >= 0) {
+            this.offset = offset;
+        }
     }
 
     public int getLimit() {
@@ -65,7 +67,9 @@ public class QueryUserCondition implements Serializable {
     }
 
     public void setLimit(int limit) {
-        this.limit = limit;
+        if (limit > 0) {
+            this.limit = limit;
+        }
     }
 
 }

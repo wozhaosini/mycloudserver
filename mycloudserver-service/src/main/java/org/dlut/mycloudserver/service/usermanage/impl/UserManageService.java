@@ -7,12 +7,15 @@
  */
 package org.dlut.mycloudserver.service.usermanage.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.dlut.mycloudserver.client.common.MyCloudResult;
 import org.dlut.mycloudserver.client.common.Pagination;
 import org.dlut.mycloudserver.client.common.usermanage.QueryUserCondition;
 import org.dlut.mycloudserver.client.common.usermanage.RoleEnum;
+import org.dlut.mycloudserver.client.common.usermanage.UserCreateReqDTO;
 import org.dlut.mycloudserver.client.common.usermanage.UserDTO;
 import org.dlut.mycloudserver.client.service.usermanage.IUserManageService;
 import org.dlut.mycloudserver.dal.dataobject.UserDO;
@@ -70,20 +73,31 @@ public class UserManageService implements IUserManageService {
     }
 
     @Override
-    public MyCloudResult<Boolean> createUser(String account, String password, RoleEnum roleEnum) {
-        // TODO
-        return null;
-    }
-
-    @Override
     public MyCloudResult<Pagination<UserDTO>> query(QueryUserCondition queryUserCondition) {
-        // TODO
-        return null;
+        int totalCount = userManageDAO.countQuery(queryUserCondition);
+        List<UserDO> userDOList = userManageDAO.query(queryUserCondition);
+        int pageSize = queryUserCondition.getLimit();
+        int pageNO = queryUserCondition.getOffset() / queryUserCondition.getLimit() + 1;
+        Pagination<UserDTO> pagination = new Pagination<UserDTO>(pageNO, pageSize, totalCount,
+                UserConvent.conventToUserDTOList(userDOList));
+        return MyCloudResult.successResult(pagination);
     }
 
     @Override
     public MyCloudResult<Integer> countQuery(QueryUserCondition queryUserCondition) {
         int totalCount = userManageDAO.countQuery(queryUserCondition);
         return MyCloudResult.successResult(totalCount);
+    }
+
+    @Override
+    public MyCloudResult<Boolean> createUser(UserCreateReqDTO userCreateReqDTO) {
+        if (userCreateReqDTO == null) {
+            return MyCloudResult.successResult(Boolean.FALSE);
+        }
+        UserDO userDO = UserConvent.conventToUserDO(userCreateReqDTO);
+        if (userManageDAO.createUser(userDO)) {
+            return MyCloudResult.successResult(Boolean.TRUE);
+        }
+        return MyCloudResult.successResult(Boolean.FALSE);
     }
 }
