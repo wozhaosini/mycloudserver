@@ -70,9 +70,9 @@ public class UserManageServiceTest extends BaseTestCase {
         //        }
 
         UserCreateReqDTO userCreateReqDTO = new UserCreateReqDTO();
-        userCreateReqDTO.setAccount("a");
-        userCreateReqDTO.setPassword("110");
-        userCreateReqDTO.setRole(RoleEnum.STUDENT);
+        userCreateReqDTO.setAccount("admin");
+        userCreateReqDTO.setPassword("10041104");
+        userCreateReqDTO.setRole(RoleEnum.ADMIN);
         userCreateReqDTO.setUserName("罗劼");
         MyCloudResult<Boolean> result = userManageService.createUser(userCreateReqDTO);
         printObject(result.getModel());
