@@ -5,13 +5,13 @@
  * use it only in accordance with the terms of the license agreement you entered
  * into with etao.com .
  */
-package org.dlut.mycloudserver.client.service.HostManage;
+package org.dlut.mycloudserver.client.service.storemanage;
 
 /**
- * 类IHostManageService.java的实现描述：TODO 类实现描述
+ * 类IISOManageService.java的实现描述：TODO 类实现描述
  * 
- * @author luojie 2014年10月27日 下午10:29:07
+ * @author luojie 2014年10月27日 下午10:31:47
  */
-public interface IHostManageService {
+public interface IISOManageService {
 
 }
