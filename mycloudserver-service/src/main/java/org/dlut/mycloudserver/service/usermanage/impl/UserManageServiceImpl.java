@@ -19,8 +19,8 @@ import org.dlut.mycloudserver.client.common.usermanage.UserCreateReqDTO;
 import org.dlut.mycloudserver.client.common.usermanage.UserDTO;
 import org.dlut.mycloudserver.client.service.usermanage.IUserManageService;
 import org.dlut.mycloudserver.dal.dataobject.UserDO;
+import org.dlut.mycloudserver.service.usermanage.UserManage;
 import org.dlut.mycloudserver.service.usermanage.convent.UserConvent;
-import org.dlut.mycloudserver.service.usermanage.dao.UserManageDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -31,16 +31,16 @@ import org.springframework.stereotype.Service;
  * @author luojie 2014年10月12日 上午11:15:48
  */
 @Service("userManageService")
-public class UserManageService implements IUserManageService {
+public class UserManageServiceImpl implements IUserManageService {
 
-    private static Logger log = LoggerFactory.getLogger(UserManageService.class);
+    private static Logger log = LoggerFactory.getLogger(UserManageServiceImpl.class);
 
-    @Resource(name = "userManageDAO")
-    private UserManageDAO userManageDAO;
+    @Resource(name = "userManage")
+    private UserManage    userManage;
 
     @Override
     public MyCloudResult<UserDTO> getUserByAccount(String account) {
-        UserDO userDO = userManageDAO.getUserByAccount(account);
+        UserDO userDO = userManage.getUserByAccount(account);
         UserDTO userDTO = UserConvent.conventToUserDTO(userDO);
         return MyCloudResult.successResult(userDTO);
     }
@@ -51,7 +51,7 @@ public class UserManageService implements IUserManageService {
             return MyCloudResult.successResult(null);
         }
 
-        UserDO userDO = userManageDAO.getUserByAccount(account);
+        UserDO userDO = userManage.getUserByAccount(account);
         if (userDO == null) {
             // 账号不存在
             log.info("用户账号" + account + " 不存在");
@@ -74,8 +74,8 @@ public class UserManageService implements IUserManageService {
 
     @Override
     public MyCloudResult<Pagination<UserDTO>> query(QueryUserCondition queryUserCondition) {
-        int totalCount = userManageDAO.countQuery(queryUserCondition);
-        List<UserDO> userDOList = userManageDAO.query(queryUserCondition);
+        int totalCount = userManage.countQuery(queryUserCondition);
+        List<UserDO> userDOList = userManage.query(queryUserCondition);
         int pageSize = queryUserCondition.getLimit();
         int pageNO = queryUserCondition.getOffset() / queryUserCondition.getLimit() + 1;
         Pagination<UserDTO> pagination = new Pagination<UserDTO>(pageNO, pageSize, totalCount,
@@ -85,7 +85,7 @@ public class UserManageService implements IUserManageService {
 
     @Override
     public MyCloudResult<Integer> countQuery(QueryUserCondition queryUserCondition) {
-        int totalCount = userManageDAO.countQuery(queryUserCondition);
+        int totalCount = userManage.countQuery(queryUserCondition);
         return MyCloudResult.successResult(totalCount);
     }
 
@@ -95,7 +95,7 @@ public class UserManageService implements IUserManageService {
             return MyCloudResult.successResult(Boolean.FALSE);
         }
         UserDO userDO = UserConvent.conventToUserDO(userCreateReqDTO);
-        if (userManageDAO.createUser(userDO)) {
+        if (userManage.createUser(userDO)) {
             return MyCloudResult.successResult(Boolean.TRUE);
         }
         return MyCloudResult.successResult(Boolean.FALSE);

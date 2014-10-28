@@ -33,7 +33,7 @@ public class UserManageServiceTest extends BaseTestCase {
 
     /**
      * Test method for
-     * {@link org.dlut.mycloudserver.service.usermanage.impl.UserManageService#getUserByAccount(java.lang.String)}
+     * {@link org.dlut.mycloudserver.service.usermanage.impl.UserManageServiceImpl#getUserByAccount(java.lang.String)}
      * .
      */
     @Test
@@ -44,7 +44,7 @@ public class UserManageServiceTest extends BaseTestCase {
 
     /**
      * Test method for
-     * {@link org.dlut.mycloudserver.service.usermanage.impl.UserManageService#verifyAndGetUser(java.lang.String, java.lang.String, org.dlut.mycloudserver.client.common.usermanage.RoleEnum)}
+     * {@link org.dlut.mycloudserver.service.usermanage.impl.UserManageServiceImpl#verifyAndGetUser(java.lang.String, java.lang.String, org.dlut.mycloudserver.client.common.usermanage.RoleEnum)}
      * .
      */
     @Test
@@ -54,7 +54,7 @@ public class UserManageServiceTest extends BaseTestCase {
 
     /**
      * Test method for
-     * {@link org.dlut.mycloudserver.service.usermanage.impl.UserManageService#createUser(java.lang.String, java.lang.String, org.dlut.mycloudserver.client.common.usermanage.RoleEnum)}
+     * {@link org.dlut.mycloudserver.service.usermanage.impl.UserManageServiceImpl#createUser(java.lang.String, java.lang.String, org.dlut.mycloudserver.client.common.usermanage.RoleEnum)}
      * .
      */
     @Test
@@ -80,7 +80,7 @@ public class UserManageServiceTest extends BaseTestCase {
 
     /**
      * Test method for
-     * {@link org.dlut.mycloudserver.service.usermanage.impl.UserManageService#query(org.dlut.mycloudserver.client.common.usermanage.QueryUserCondition)}
+     * {@link org.dlut.mycloudserver.service.usermanage.impl.UserManageServiceImpl#query(org.dlut.mycloudserver.client.common.usermanage.QueryUserCondition)}
      * .
      */
     @Test
@@ -99,7 +99,7 @@ public class UserManageServiceTest extends BaseTestCase {
 
     /**
      * Test method for
-     * {@link org.dlut.mycloudserver.service.usermanage.impl.UserManageService#countQuery(org.dlut.mycloudserver.client.common.usermanage.QueryUserCondition)}
+     * {@link org.dlut.mycloudserver.service.usermanage.impl.UserManageServiceImpl#countQuery(org.dlut.mycloudserver.client.common.usermanage.QueryUserCondition)}
      * .
      */
     @Test

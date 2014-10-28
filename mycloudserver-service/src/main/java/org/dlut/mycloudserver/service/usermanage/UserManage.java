@@ -5,7 +5,7 @@
  * use it only in accordance with the terms of the license agreement you entered
  * into with etao.com .
  */
-package org.dlut.mycloudserver.service.usermanage.dao;
+package org.dlut.mycloudserver.service.usermanage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +24,8 @@ import org.springframework.stereotype.Service;
  * @author luojie 2014年10月7日 下午11:43:45
  */
 
-@Service("userManageDAO")
-public class UserManageDAO {
+@Service("userManage")
+public class UserManage {
 
     @Resource
     private UserManageMapper userManageMapper;
