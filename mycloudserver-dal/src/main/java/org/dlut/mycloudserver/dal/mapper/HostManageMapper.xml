@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dlut.mycloudserver.dal.mapper.HostManageMapper">
+	<resultMap id="RM-HostDO" type="HostDO">
+		<result property="hostId" column="host_id" />
+		<result property="hostName" column="host_name" />
+		<result property="hostIp" column="host_ip" />
+		<result property="hostStatus" column="host_status" />
+		<result property="gmtCreate" column="gmt_create" />
+		<result property="gmtModified" column="gmt_modified" />
+	</resultMap>
+
+	<sql id="select-param-column">
+		host_id, host_name, host_ip, host_status, gmt_create,
+		gmt_modified
+	</sql>
+
+	<sql id="page-limit">
+		LIMIT #{offset}, #{limit}
+	</sql>
+
+	<sql id="query-condition">
+		<if test="hostId!=null">
+			host_id=#{hostId}
+		</if>
+		<if test="hostName!=null">
+			AND host_name=#{hostName}
+		</if>
+		<if test="hostIp!=null">
+			AND host_ip=#{hostIp}
+		</if>
+		<if test="hostStatusEnum!=null">
+			AND host_status=#{hostStatusEnum.status}
+		</if>
+	</sql>
+
+	<select id="getHostById" resultMap="RM-HostDO">
+		SELECT
+		<include refid="select-param-column" />
+		FROM mycloud_host where host_id=#{hostId}
+	</select>
+
+	<insert id="createHost">
+		INSERT INTO mycloud_host(host_name, host_ip,
+		host_status, gmt_create, gmt_modified)
+		VALUES(#{hostName}, #{hostIp},
+		#{hostStatus}, #{role}, now(), now())
+	</insert>
+
+	<delete id="deleteHostById">
+		<![CDATA[
+		DELETE FROM mycloud_host WHERE host_id = #{hostId}
+		]]>
+	</delete>
+
+	<update id="updateHost">
+		UPDATE mycloud_host
+		<set>
+			<if test="hostName!=null">
+				host_name=#{hostName},
+			</if>
+			<if test="hostIp!=null">
+				host_ip=#{hostIp},
+			</if>
+			<if test="hostStatus!=null">
+				host_status=#{hostStatus},
+			</if>
+			gmt_modified=now()
+		</set>
+		WHERE host_id=#{hostId}
+	</update>
+
+	<select id="countQuery" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		mycloud_host
+		<where>
+			<include refid="query-condition" />	
+		</where>
+	</select>
+	
+	<select id="query" resultMap="RM-HostDO">
+		SELECT
+		<include refid="select-param-column" />
+		FROM mycloud_host
+		<where>
+			<include refid="query-condition" />	
+		</where>
+		<include refid="page-limit" />
+	</select>
+
+</mapper>

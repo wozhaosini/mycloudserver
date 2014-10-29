@@ -19,5 +19,9 @@
 	<bean id="userManageMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="mycloudServerBaseMapper">
 		<property name="mapperInterface" value="org.dlut.mycloudserver.dal.mapper.UserManageMapper" />
 	</bean>
+	
+	<bean id="hostManageMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" parent="mycloudServerBaseMapper">
+		<property name="mapperInterface" value="org.dlut.mycloudserver.dal.mapper.HostManageMapper" />
+	</bean>
 
 </beans>
