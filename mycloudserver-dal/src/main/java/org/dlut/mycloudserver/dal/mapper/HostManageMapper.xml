@@ -44,7 +44,7 @@
 		INSERT INTO mycloud_host(host_name, host_ip,
 		host_status, gmt_create, gmt_modified)
 		VALUES(#{hostName}, #{hostIp},
-		#{hostStatus}, #{role}, now(), now())
+		#{hostStatus}, now(), now())
 	</insert>
 
 	<delete id="deleteHostById">

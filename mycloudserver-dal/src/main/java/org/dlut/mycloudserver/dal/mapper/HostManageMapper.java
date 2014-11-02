@@ -32,7 +32,7 @@ public interface HostManageMapper {
      * 创建主机
      * 
      * @param hostDO
-     * @return
+     * @return 返回创建的物理机的id
      */
     int createHost(HostDO hostDO);
 

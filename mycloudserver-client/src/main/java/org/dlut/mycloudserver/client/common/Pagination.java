@@ -33,17 +33,17 @@ public class Pagination<T> implements Serializable {
     public Pagination() {
     }
 
-    public Pagination(int pageNO, int pageSize, int totalCount, List<T> list) {
-        if (pageNO <= 0) {
-            this.pageNo = 1;
-        } else {
-            this.pageNo = pageNO;
-        }
-
-        if (pageSize <= 0) {
+    public Pagination(int offset, int limit, int totalCount, List<T> list) {
+        if (limit <= 0) {
             this.pageSize = DEFAULT_PAGE_SIZE;
         } else {
-            this.pageSize = pageSize;
+            this.pageSize = limit;
+        }
+
+        if (offset <= 0) {
+            this.pageNo = 1;
+        } else {
+            this.pageNo = offset / this.pageSize + 1;
         }
 
         if (totalCount < 0) {
@@ -58,6 +58,32 @@ public class Pagination<T> implements Serializable {
         this.list = list;
 
     }
+
+    //    public Pagination(int pageNO, int pageSize, int totalCount, List<T> list) {
+    //        if (pageNO <= 0) {
+    //            this.pageNo = 1;
+    //        } else {
+    //            this.pageNo = pageNO;
+    //        }
+    //
+    //        if (pageSize <= 0) {
+    //            this.pageSize = DEFAULT_PAGE_SIZE;
+    //        } else {
+    //            this.pageSize = pageSize;
+    //        }
+    //
+    //        if (totalCount < 0) {
+    //            this.totalCount = 0;
+    //        } else {
+    //            this.totalCount = totalCount;
+    //        }
+    //
+    //        totalPage = (this.totalCount % this.pageSize == 0) ? this.totalCount / this.pageSize : this.totalCount
+    //                / this.pageSize + 1;
+    //
+    //        this.list = list;
+    //
+    //    }
 
     public int getTotalCount() {
         return totalCount;

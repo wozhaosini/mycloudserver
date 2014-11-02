@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.dlut.mycloudserver.client.common.ErrorEnum;
 import org.dlut.mycloudserver.client.common.MyCloudResult;
 import org.dlut.mycloudserver.client.common.Pagination;
 import org.dlut.mycloudserver.client.common.usermanage.QueryUserCondition;
@@ -74,12 +75,18 @@ public class UserManageServiceImpl implements IUserManageService {
 
     @Override
     public MyCloudResult<Pagination<UserDTO>> query(QueryUserCondition queryUserCondition) {
+        if (queryUserCondition == null) {
+            return MyCloudResult.failedResult(ErrorEnum.PARAM_NULL);
+        }
         int totalCount = userManage.countQuery(queryUserCondition);
         List<UserDO> userDOList = userManage.query(queryUserCondition);
-        int pageSize = queryUserCondition.getLimit();
-        int pageNO = queryUserCondition.getOffset() / queryUserCondition.getLimit() + 1;
-        Pagination<UserDTO> pagination = new Pagination<UserDTO>(pageNO, pageSize, totalCount,
-                UserConvent.conventToUserDTOList(userDOList));
+        //        int pageSize = queryUserCondition.getLimit();
+        //        int pageNO = queryUserCondition.getOffset() / queryUserCondition.getLimit() + 1;
+        //        Pagination<UserDTO> pagination = new Pagination<UserDTO>(pageNO, pageSize, totalCount,
+        //                UserConvent.conventToUserDTOList(userDOList));
+        //        return MyCloudResult.successResult(pagination);
+        Pagination<UserDTO> pagination = new Pagination<UserDTO>(queryUserCondition.getOffset(),
+                queryUserCondition.getLimit(), totalCount, UserConvent.conventToUserDTOList(userDOList));
         return MyCloudResult.successResult(pagination);
     }
 

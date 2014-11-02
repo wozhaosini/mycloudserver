@@ -9,6 +9,8 @@ package org.dlut.mycloudserver.client.common;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 /**
  * 类UCloudResult.java的实现描述：TODO 类实现描述
  * 
@@ -51,6 +53,16 @@ public class MyCloudResult<T> implements Serializable {
         return result;
     }
 
+    public static <T> MyCloudResult<T> failedResult(ErrorEnum errorEnum) {
+        MyCloudResult<T> result = new MyCloudResult<T>();
+        result.setSuccess(false);
+        if (errorEnum != null) {
+            result.setMsgCode(errorEnum.getErrCode());
+            result.setMsgInfo(errorEnum.getErrDesc());
+        }
+        return result;
+    }
+
     public boolean isSuccess() {
         return success;
     }
@@ -83,4 +95,8 @@ public class MyCloudResult<T> implements Serializable {
         this.msgInfo = msgInfo;
     }
 
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
+    }
 }

@@ -20,6 +20,15 @@ public enum HostStatusEnum {
     private int    status;
     private String desc;
 
+    public static HostStatusEnum getHostByStatus(int status) {
+        for (HostStatusEnum hostStatusEnum : HostStatusEnum.values()) {
+            if (hostStatusEnum.getStatus() == status) {
+                return hostStatusEnum;
+            }
+        }
+        return null;
+    }
+
     private HostStatusEnum(int status, String desc) {
         this.status = status;
         this.desc = desc;
