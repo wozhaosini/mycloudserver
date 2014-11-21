@@ -15,6 +15,7 @@
 
 	<import resource="dal-context.xml" />
 	<import resource="provider/*.xml" />
+	<import resource="timer.xml" />
 
 
 </beans>
